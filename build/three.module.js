@@ -7237,6 +7237,9 @@ class Object3D extends EventDispatcher {
 			modelViewMatrix: {
 				value: new Matrix4()
 			},
+			prevMVMatrix: {
+				value: new Matrix4()
+			},
 			normalMatrix: {
 				value: new Matrix3()
 			}
@@ -19991,6 +19994,7 @@ function WebGLProgram( renderer, cacheKey, parameters, bindingStates ) {
 
 			'uniform mat4 modelMatrix;',
 			'uniform mat4 modelViewMatrix;',
+			'uniform mat4 prevMVMatrix;',
 			'uniform mat4 projectionMatrix;',
 			'uniform mat4 viewMatrix;',
 			'uniform mat3 normalMatrix;',
@@ -29979,6 +29983,7 @@ class WebGLRenderer {
 			}
 
 			object.onAfterRender( _this, scene, camera, geometry, material, group );
+			object.prevMVMatrix.copy( object.modelViewMatrix );
 
 		}
 
@@ -30471,6 +30476,7 @@ class WebGLRenderer {
 			p_uniforms.setValue( _gl, 'modelViewMatrix', object.modelViewMatrix );
 			p_uniforms.setValue( _gl, 'normalMatrix', object.normalMatrix );
 			p_uniforms.setValue( _gl, 'modelMatrix', object.matrixWorld );
+			p_uniforms.setValue( _gl, 'prevMVMatrix', object.prevMVMatrix );
 
 			// UBOs
 

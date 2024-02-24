@@ -1586,6 +1586,7 @@ class WebGLRenderer {
 			}
 
 			object.onAfterRender( _this, scene, camera, geometry, material, group );
+			object.prevMVMatrix.copy( object.modelViewMatrix );
 
 		}
 
@@ -2078,6 +2079,7 @@ class WebGLRenderer {
 			p_uniforms.setValue( _gl, 'modelViewMatrix', object.modelViewMatrix );
 			p_uniforms.setValue( _gl, 'normalMatrix', object.normalMatrix );
 			p_uniforms.setValue( _gl, 'modelMatrix', object.matrixWorld );
+			p_uniforms.setValue( _gl, 'prevMVMatrix', object.prevMVMatrix );
 
 			// UBOs
 

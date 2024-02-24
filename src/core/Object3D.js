@@ -89,6 +89,9 @@ class Object3D extends EventDispatcher {
 			modelViewMatrix: {
 				value: new Matrix4()
 			},
+			prevMVMatrix: {
+				value: new Matrix4()
+			},
 			normalMatrix: {
 				value: new Matrix3()
 			}
